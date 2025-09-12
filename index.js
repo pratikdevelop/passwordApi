@@ -11,6 +11,7 @@ const noteController = require("./routes/noteRoutes");
 const proofIdsController = require('./routes/proofIdRoutes');
 const cardControlller = require('./routes/cardRoutes');
 const securityQuestionRoutes = require('./routes/securityQuestionRoutes');
+
 const fileRoutes = require('./routes/fileRoutes');
 const shareItemRoutes = require('./routes/shareItemRoutes');
 const planRoutes = require('./routes/plan-routes');
@@ -31,32 +32,32 @@ const rateLimit = require("express-rate-limit");  // Import express-rate-limit
 const port = process.env.PORT || 8000;
 
 // Use Helmet for security headers
-app.use(helmet());
+// app.use(helmet());
 
 // CORS configuration for local and live domains
-const corsOptions = {
-  origin: ['http://localhost:4200', 'https://safepassvault.co.in'], // Allow localhost and live domain
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-};
+// const corsOptions = {
+//   origin: ['http://localhost:4200', 'https://safepassvault.co.in'], // Allow localhost and live domain
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   allowedHeaders: ['Content-Type', 'Authorization']
+// };
 app.use(cors());
 
-app.use((req, res, next) => {
-  // Correctly format the Content-Security-Policy header as a single line
-  res.setHeader(
-    "Content-Security-Policy",
-    "default-src 'self'; connect-src 'self' http://localhost:3000 https://vixol72czg.execute-api.us-east-1.amazonaws.com; script-src 'self' 'unsafe-inline' https://vixol72czg.execute-api.us-east-1.amazonaws.com; style-src 'self' 'unsafe-inline' https://vixol72czg.execute-api.us-east-1.amazonaws.com; img-src 'self' https://vixol72czg.execute-api.us-east-1.amazonaws.com; font-src 'self' https://fonts.gstatic.com;"
-  );
+// app.use((req, res, next) => {
+//   // Correctly format the Content-Security-Policy header as a single line
+//   res.setHeader(
+//     "Content-Security-Policy",
+//     "default-src 'self'; connect-src 'self' http://localhost:3000 https://vixol72czg.execute-api.us-east-1.amazonaws.com; script-src 'self' 'unsafe-inline' https://vixol72czg.execute-api.us-east-1.amazonaws.com; style-src 'self' 'unsafe-inline' https://vixol72czg.execute-api.us-east-1.amazonaws.com; img-src 'self' https://vixol72czg.execute-api.us-east-1.amazonaws.com; font-src 'self' https://fonts.gstatic.com;"
+//   );
 
-  // Other security headers
-  res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
-  res.setHeader("Referrer-Policy", "no-referrer");
-  res.setHeader("X-Content-Type-Options", "nosniff");
-  res.setHeader("X-Frame-Options", "DENY");
-  res.setHeader("Permissions-Policy", "geolocation=(), microphone=(), camera=()");
+//   // Other security headers
+//   res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+//   res.setHeader("Referrer-Policy", "no-referrer");
+//   res.setHeader("X-Content-Type-Options", "nosniff");
+//   res.setHeader("X-Frame-Options", "DENY");
+//   res.setHeader("Permissions-Policy", "geolocation=(), microphone=(), camera=()");
 
-  next();
-});
+//   next();
+// });
 
 
 app.get("/", (req, res) => {
